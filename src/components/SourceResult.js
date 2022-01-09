@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import React from "react";
+import { Container } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
-import * as ReactBootstrap from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 
@@ -17,24 +16,26 @@ function SourceResult(props) {
     },
     {
       dataField: "fake",
-      text: "Fake(%)",
+      text: "Unreliable(%)",
       sort: true,
       headerStyle: () => {
-        return {width: "10%"}
+        return {width: "15%"}
       },
       headerAlign: 'center',
-      align: 'center'
+      align: 'center',
+      style: { color: 'red' },
 
     },
     {
       dataField: "real",
-      text: "Real(%)",
+      text: "Reliable(%)",
       sort: true,
       headerStyle: () => {
-        return {width: "10%"}
+        return {width: "15%"}
       },
       headerAlign: 'center',
-      align: 'center'
+      align: 'center',
+      style: { color: 'green' },
     },
   ];
 

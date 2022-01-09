@@ -15,11 +15,8 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse>
             <Nav className="me-auto">
-              <LinkContainer to="/source">
-                <Nav.Link>Source Prediction</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/source">
-                <Nav.Link>About</Nav.Link>
+              <LinkContainer to="/get_source">
+                <Nav.Link>Source</Nav.Link>
               </LinkContainer>
             </Nav>
           </Navbar.Collapse>

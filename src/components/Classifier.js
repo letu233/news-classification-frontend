@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, Alert } from "react-bootstrap";
 import Axios from "axios";
 import Result from './Result'
+import validator from 'validator'
 
 
 function Classifier() {
   const url = "http://127.0.0.1:5000/";
   const [link, setLink] = useState("");
-
+  const [val, setVal] = useState('false');
   const [res, setRes] = useState([]);
 
   function submit(e) {
@@ -20,6 +21,15 @@ function Classifier() {
     });
   }
 
+  const validate = (value) => {
+    setLink(value)
+    if (validator.isURL(value)) {
+      setVal('true')
+    } else {
+      setVal('false')
+    }
+  }
+
   return (
     <Container>
       <Form onSubmit={(e) => submit(e)}>
@@ -29,19 +39,21 @@ function Classifier() {
             type="text"
             placeholder="Enter link"
             value={link}
-            onChange={(e) => setLink(e.target.value)}
+            onChange={(e) => validate(e.target.value)}
           />
           <Form.Text className="text-muted">
             Enter link you want to check
           </Form.Text>
         </Form.Group>
-
-        <Button variant="dark" type="submit">
+        <Button variant="dark" type="submit" disabled= {val !== 'true'}>
           Submit
         </Button>
       </Form>
       <hr></hr>
-      <div>{res.answer === '1' ? <Result real={res.real} fake={res.fake} url={res.url}/> : <h3></h3>   
+      <div>{res.answer === '1' ? <Result keyword={res.key} real={res.real} fake={res.fake} url={res.url}/> : res.answer ==='0'? 
+      <Alert variant="warning">
+        {res.result}
+      </Alert> : <h3></h3>
       }</div>
 
     </Container>
